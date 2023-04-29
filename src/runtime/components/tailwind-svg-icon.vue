@@ -1,5 +1,6 @@
 <template>
   <span
+    class="tailwind-svg-icon"
     v-html="icon"
   />
 </template>
@@ -23,7 +24,7 @@ async function getIcon() {
       eager: false,
     });
     let rawIcon = await iconsImport[`/assets/icons/${props.name}.svg`]();
-    if (rawIcon.includes("stroke")) {      
+    if (rawIcon.includes("stroke")) {
       rawIcon = rawIcon.replace(/stroke=".*?"/g, 'stroke="currentColor"');
     } else {
       rawIcon = rawIcon.replace(/fill=".*?"/g, 'fill="currentColor"');
@@ -41,7 +42,10 @@ await getIcon();
 
 watchEffect(getIcon);
 </script>
-<style scoped>
-/* # */
+<style>
+.tailwind-svg-icon svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
 </style>
-
